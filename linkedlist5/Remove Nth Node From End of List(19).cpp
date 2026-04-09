@@ -28,3 +28,25 @@ public:
         return dummy->next;
     }
 };
+//bf - get length of list then return n-k th node
+
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+    int l =0;
+    ListNode* node = head;
+    while(node){
+        l++;
+        node= node->next;
+    }
+    if(l==n) return head->next;
+    ListNode* slow = head;
+    for(int i=0; i<(l-n-1); i++){
+        slow = slow->next;
+
+    }
+    slow->next = slow->next->next;
+    return  head;
+
+    }
+};
