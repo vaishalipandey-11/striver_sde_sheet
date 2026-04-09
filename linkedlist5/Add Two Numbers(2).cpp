@@ -35,3 +35,23 @@ public:
 
     }
 };
+//recursive approach - add the values and carry and create new node for sum%10 and update carry as sum/10 and call recursively for next nodes
+class Solution {
+public:
+    ListNode* solve(ListNode* l1, ListNode* l2, int carry){
+        if(!l1 && !l2 && carry ==0) return NULL; 
+        int sum = carry ;
+
+        if(l1) sum+=l1->val;
+        if(l2) sum+=l2->val;
+
+        ListNode* node = new ListNode(sum%10);
+
+        node->next = solve( l1? l1->next:NULL , l2? l2->next:NULL , sum/10);
+        return node;
+    }
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        return solve(l1 , l2 , 0);
+        
+    }
+};
