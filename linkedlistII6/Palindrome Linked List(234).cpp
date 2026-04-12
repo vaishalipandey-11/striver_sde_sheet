@@ -47,3 +47,44 @@ public:
         return true;
     }
 };
+// middle and reverse method - find the middle of the list and reverse the second half of the list and then compare the first half and the reversed second half
+class Solution {
+public:
+    ListNode* reverse(ListNode* head) {
+
+        ListNode* prev = NULL;
+        while (head) {
+            ListNode* next = head->next;
+            head->next = prev;
+            prev = head;
+            head = next;
+        }
+        return prev;
+    }
+
+    bool isPalindrome(ListNode* head) {
+
+        if (!head || !head->next )
+            return true;
+
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        //middle
+        while (fast && fast->next) {
+
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        ListNode* temp = reverse(slow);
+        ListNode* first = head;
+
+        while(temp ){
+            if(temp->val != first->val) return false;
+            temp= temp ->next;
+            first = first->next;
+        }
+        return true;
+    }
+};
