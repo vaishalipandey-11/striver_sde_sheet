@@ -35,6 +35,8 @@ public:
         
     }
 };
+
+//using difference len - move and get common
 class Solution {
 public:
     int getlen(ListNode* head){
